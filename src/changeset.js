@@ -53,13 +53,7 @@ function compare(path, old, new_) {
 }
 
 export function apply(changes, target, modify) {
-  var obj, clone;
-  if (modify) {
-    obj = target;
-  } else {
-    clone = require('udc');
-    obj = clone(target);
-  }
+  let obj = target;
   changes.forEach(function (ch) {
     var ptr, keys, len;
     switch (ch.type) {
@@ -111,13 +105,7 @@ export function apply(changes, target, modify) {
 }
 
 export function annotateLeft(changes, target, modify = true) {
-  var obj, clone;
-  if (modify) {
-    obj = target;
-  } else {
-    clone = require('udc');
-    obj = clone(target);
-  }
+  let obj = target;
   changes.forEach(function (ch) {
     var ptr, keys, len;
     switch (ch.type) {
@@ -172,13 +160,7 @@ export function annotateLeft(changes, target, modify = true) {
 }
 
 export function annotateRight(changes, target, modify = true) {
-  var obj, clone;
-  if (modify) {
-    obj = target;
-  } else {
-    clone = require('udc');
-    obj = clone(target);
-  }
+  let obj = target;
   changes.forEach(function (ch) {
     var ptr, keys, len;
     switch (ch.type) {
