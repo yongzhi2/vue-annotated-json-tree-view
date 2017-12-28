@@ -1,12 +1,12 @@
 <template>
-  <div class="tree-view-item">
+  <div :class="getCSSClass(data)">
     <div v-if="isObject(data)" class="tree-view-item-leaf">
       <div class="tree-view-item-node" @click.stop="toggleOpen()" >
         <span :class="{opened: isOpen()}" class="tree-view-item-key tree-view-item-key-with-chevron">{{getKey(data)}}</span>
         <span class="tree-view-item-hint" v-show="!isOpen() && data.children.length === 1">{{data.children.length}} property</span>
         <span class="tree-view-item-hint" v-show="!isOpen() && data.children.length !== 1">{{data.children.length}} properties</span>
       </div>
-      <tree-view-item :key="getKey(data)" :max-depth="maxDepth" :current-depth="currentDepth+1" v-show="isOpen()" v-for="child in data.children" :data="child" :modifiable="modifiable" @change-data="onChangeData"></tree-view-item>
+      <tree-view-item :key="getKeyId(data)" :root="root" :max-depth="maxDepth" :current-depth="currentDepth+1" v-show="isOpen()" v-for="child in data.children" :data="child" :modifiable="modifiable" @change-data="onChangeData"></tree-view-item>
     </div>
     <div v-if="isArray(data)" class="tree-view-item-leaf">
       <div class="tree-view-item-node" @click.stop="toggleOpen()">
@@ -14,7 +14,7 @@
         <span class="tree-view-item-hint" v-show="!isOpen() && data.children.length === 1">{{data.children.length}} item</span>
         <span class="tree-view-item-hint" v-show="!isOpen() && data.children.length !== 1">{{data.children.length}} items</span>
       </div>
-      <tree-view-item :key="getKey(data)" :max-depth="maxDepth" :current-depth="currentDepth+1" v-show="isOpen()" v-for="child in data.children" :data="child" :modifiable="modifiable" @change-data="onChangeData"></tree-view-item>
+      <tree-view-item :key="getKeyId(data)" :root="root" :max-depth="maxDepth" :current-depth="currentDepth+1" v-show="isOpen()" v-for="child in data.children" :data="child" :modifiable="modifiable" @change-data="onChangeData"></tree-view-item>
     </div>
     <tree-view-item-value v-if="isValue(data)" class="tree-view-item-leaf" :key-string="getKey(data)" :data="data.value" :modifiable="modifiable" @change-data="onChangeData">
     </tree-view-item-value>
@@ -30,7 +30,7 @@
       TreeViewItemValue
     },
   	name: "tree-view-item",
-    props: ["data", "max-depth", "current-depth", "modifiable"],
+    props: ["data", "root", "max-depth", "current-depth", "modifiable"],
     data: function(){
     	return {
       	open: this.currentDepth < this.maxDepth
@@ -52,11 +52,35 @@
       isValue: function(value){
       	return value.type === 'value';
       },
+      getKeyId: function(value) {
+        return this.root + "-" + this.getKey(value);
+      },
+      //@a(class='abc') => ['tree-view-item', 'abc']
+      getCSSClass(value){
+        if (_.isInteger(value.key)) {
+          return "tree-view-item";
+        }
+
+        let a = value.key.match(/@(.*)\((.*)\)$/)
+        if (a) {
+          let c = a[2].match(/class=('|")(.*?)('|")/)
+          if (c) {
+            return ("tree-view-item " + c[2]).split(' ');
+          }
+        }
+
+        return "tree-view-item";
+      },
       getKey: function(value){
       	if (_.isInteger(value.key)) {
-        	return value.key+":";
+          return value.key+":";
         } else {
-  	      return "\""+ value.key + "\":";
+      	  let a = value.key.match(/@(.*)\((.*)\)$/)
+      	  if (a) {
+      	    return "\""+ a[1] + "\":";
+      	  } else {
+        	    return "\""+ value.key + "\":";
+      	  }
         }
       },
       isRootObject: function(value = this.data){

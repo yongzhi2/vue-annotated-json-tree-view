@@ -1,3 +1,22 @@
+#This is an extension Of vue-json-tree-view to support "Annotated JSON".
+
+JSON is pure data. Annotated JSON is a little extension that uses convention to add additional information into it.
+Common usages include:
+* comment
+* hint for presentation (e.g. different colors for different sections)
+
+Annotated JSON does not change tree structure, it modifies key in place instead. For example, if this is an original JSON:
+{"k": "v"}
+
+The annotated one may look like this:
+{"@k(class='red', comment='example')": "v"}
+
+And that is it. If you are building a parser yourself, annotated key always starts with '@' and is followed by a parentheses with HTML-style attributes inside.
+
+This format is not governed by any committee. I just found it useful in many of my projects for keeping track of changes of a JSON document.
+
+Below are the original README:
+
 # Vue JSON Tree View
 
 ![a demonstration](https://raw.githubusercontent.com/arvidkahl/vue-json-tree-view/master/header.png)
@@ -49,7 +68,7 @@ The defaults are:
 ```
 - maxDepth: The maximum number of levels of the JSON Tree that should be expanded by default. Expects an Integer from 0 to Infinity.
 - rootObjectKey: the name of the Root Object, will default to `root`
-- modifiable: To modify the json value. 
+- modifiable: To modify the json value.
 
 ## Event
 

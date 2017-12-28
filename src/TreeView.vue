@@ -1,6 +1,6 @@
 <template>
   <div class="tree-view-wrapper">
-    <tree-view-item class="tree-view-item-root" :data="parsedData" :max-depth="allOptions.maxDepth" :current-depth="0" :modifiable="allOptions.modifiable" @change-data="onChangeData"></tree-view-item>
+    <tree-view-item class="tree-view-item-root" :data="parsedData" :root="allOptions.rootObjectKey" :max-depth="allOptions.maxDepth" :current-depth="0" :modifiable="allOptions.modifiable" @change-data="onChangeData"></tree-view-item>
   </div>
 </template>
 

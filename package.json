@@ -1,14 +1,14 @@
 {
-  "name": "vue-json-tree-view",
-  "version": "2.1.1",
-  "repository": "arvidkahl/vue-json-tree-view",
-  "homepage": "https://github.com/arvidkahl/vue-json-tree-view",
+  "name": "vue-annotated-json-tree-view",
+  "version": "2.1.2",
+  "repository": "yongzhi2/vue-json-tree-view",
+  "homepage": "https://github.com/yongzhi2/vue-annotated-json-tree-view",
   "bugs": {
-    "url": "https://github.com/arvidkahl/vue-json-tree-view/issues",
+    "url": "https://github.com/yongzhi2/vue-annotated-json-tree-view/issues",
     "email": "mail@arvidkahl.de"
   },
-  "description": "a JSON Tree View Component in Vue.js",
-  "main": "./dist/vue-json-tree-view.min.js",
+  "description": "Annotated JSON Tree View Component in Vue.js",
+  "main": "./src/index.js",
   "scripts": {
     "dev": "webpack-dev-server --inline --watch --progress --config webpack.dev.config.js --port 5000",
     "build": "webpack --progress --config webpack.prod.config.js",
