@@ -52,6 +52,7 @@ function compare(path, old, new_) {
   return changes;
 }
 
+/*
 export function apply(changes, target, modify) {
   let obj = target;
   changes.forEach(function (ch) {
@@ -102,7 +103,7 @@ export function apply(changes, target, modify) {
     }
   });
   return obj;
-}
+}*/
 
 export function annotateLeft(changes, target, modify = true) {
   let obj = target;
