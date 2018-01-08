@@ -1,4 +1,5 @@
-#This is an extension Of vue-json-tree-view to support "Annotated JSON".
+# Vue Annotated JSON Tree View
+This is an extension of vue-json-tree-view to support "Annotated JSON".
 
 JSON is pure data. Annotated JSON is a little extension that uses convention to add additional information into it.
 Common usages include:
@@ -6,14 +7,18 @@ Common usages include:
 * hint for presentation (e.g. different colors for different sections)
 
 Annotated JSON does not change tree structure, it modifies key in place instead. For example, if this is an original JSON:
+```javascript
 {"k": "v"}
+```
 
 The annotated one may look like this:
+```javascript
 {"@k(class='red', comment='example')": "v"}
+```
 
-And that is it. If you are building a parser yourself, annotated key always starts with '@' and is followed by a parentheses with HTML-style attributes inside.
+And that is it. If you are building a parser yourself, annotated key always starts with '@' and is followed by a parentheses with HTML-style attributes inside. If you strip them, it will be back to the original JSON.
 
-This format is not governed by any committee. I just found it useful in many of my projects for keeping track of changes of a JSON document.
+This format is not governed by any committee. I just found it useful in many of my projects for keeping track of changes of a JSON document (building JSON diff for example).
 
 Below are the original README:
 
