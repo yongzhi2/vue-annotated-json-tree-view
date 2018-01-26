@@ -1,6 +1,6 @@
 {
   "name": "vue-annotated-json-tree-view",
-  "version": "2.1.6",
+  "version": "2.1.7",
   "repository": "yongzhi2/vue-annotated-json-tree-view",
   "homepage": "https://github.com/yongzhi2/vue-annotated-json-tree-view",
   "bugs": {
@@ -23,7 +23,7 @@
   "license": "MIT",
   "dependencies": {
     "lodash": "^4.17.4",
-    "vue": "^2.0.0"
+    "vue": "^2.5.0"
   },
   "devDependencies": {
     "babel-core": "^6.5.2",
